@@ -1,7 +1,7 @@
 ---
 version: "3.7"
 services:
-  nautobot-custom:
+  nautobot:
     image: "networktocode/nautobot:custom"
     env_file:
       - "local.env"
@@ -9,13 +9,14 @@ services:
       - "8443:8443"
       - "8080:8080"
     restart: "unless-stopped"
+
   nautobot-worker:
     image: "networktocode/nautobot:custom"
     env_file:
       - "local.env"
     entrypoint: "nautobot-server rqworker"
     depends_on:
-      - "nautobot-custom"
+      - "nautobot"
     restart: "unless-stopped"
   # ----------------------------------
   # Celery worker must only be used in > 1.1.0 installs. If setting to a previous install, remove this worker
@@ -30,7 +31,7 @@ services:
       retries: 3
       test: ["CMD", "nautobot-server", "health_check"]
     depends_on:
-      - "nautobot-custom"
+      - "nautobot"
       - "redis"
     env_file:
       - "./local.env"
@@ -48,7 +49,7 @@ services:
       retries: 3
       test: ["CMD", "nautobot-server", "health_check"]
     depends_on:
-      - "nautobot-custom"
+      - "nautobot"
       - "redis"
     env_file:
       - "./local.env"
