@@ -3,15 +3,13 @@ version: "3.7"
 services:
   nautobot:
     image: "networktocode/nautobot:${NAUTOBOT_IMAGE}-py${PYTHON_VER:-3.9}"
-    build: "networktocode/nautobot:${NAUTOBOT_IMAGE}-py${PYTHON_VER:-3.9}-custom"
-  nautobot-custom:
-    image: "networktocode/nautobot:${NAUTOBOT_IMAGE}-py${PYTHON_VER:-3.9}-custom"
     env_file:
       - "local.env"
     ports:
       - "8443:8443"
       - "8080:8080"
     restart: "unless-stopped"
+
   nautobot-worker:
     image: "networktocode/nautobot:${NAUTOBOT_IMAGE}-py${PYTHON_VER:-3.9}"
     env_file:
