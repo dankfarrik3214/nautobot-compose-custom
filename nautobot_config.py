@@ -209,7 +209,7 @@ NAPALM_TIMEOUT = int(os.getenv("NAUTOBOT_NAPALM_TIMEOUT", "30"))
 NAPALM_ARGS = {}
 
 # Enable installed plugins. Add the name of each plugin to the list.
-PLUGINS = ["nautobot_plugin_nornir", "nautobot_golden_config"]
+PLUGINS = ["nautobot_plugin_nornir", "nautobot_golden_config", "nautobot_device_lifecycle_mgmt"]
 
 # Plugins configuration settings. These settings are used by various plugins that the user may have installed.
 # Each key in the dictionary is the name of an installed plugin and its value is a dictionary of settings.
@@ -247,6 +247,11 @@ PLUGINS_CONFIG = {
         "platform_slug_map": None,
         # "get_custom_compliance": "my.custom_compliance.func"
     },
+        "nautobot_device_lifecycle_mgmt": {
+        "barchart_bar_width": float(os.environ.get("BARCHART_BAR_WIDTH", 0.1)),
+        "barchart_width": int(os.environ.get("BARCHART_WIDTH", 12)),
+        "barchart_height": int(os.environ.get("BARCHART_HEIGHT", 5)),
+    }
 }
 
 

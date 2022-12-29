@@ -7,3 +7,4 @@ FROM networktocode/nautobot:$NAUTOBOT_IMAGE-py$PYTHON_VER
 COPY nautobot_config.py /opt/nautobot/nautobot_config.py
 
 RUN pip install nautobot-golden-config
+RUN pip install nautobot-device-lifecycle-mgmt
